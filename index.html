@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>รายชื่อผู้ติดต่อ</h1>
+        <button id="add-contact-btn" class="btn btn-primary">เพิ่มรายชื่อใหม่</button>
+    </header>
+
+    <main class="container">
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="ค้นหาตามชื่อหรืออีเมล...">
+            <select id="sort-select">
+                <option value="createdAt">เรียงตามวันที่เพิ่ม</option>
+                <option value="name">เรียงตามชื่อ</option>
+                <option value="email">เรียงตามอีเมล</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-img">รูปภาพ</th>
+                        <th class="col-name">ชื่อ</th>
+                        <th class="col-email">อีเมล</th>
+                        <th class="col-phone">เบอร์โทรศัพท์</th>
+                        <th class="col-actions">การดำเนินการ</th>
+                    </tr>
+                </thead>
+                <tbody id="contacts-table-body">
+                    </tbody>
+            </table>
+        </div>
+        
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <p>ไม่พบรายชื่อผู้ติดต่อ</p>
+        </div>
+    </main>
+
+    <div id="loader" class="loader-overlay" style="display: none;">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <div id="form-modal" class="modal-overlay">
+        <div class="modal-content">
+            <form id="contact-form">
+                <input type="hidden" id="contact-id">
+                <h2 id="modal-title">เพิ่มรายชื่อใหม่</h2>
+                
+                <div class="profile-pic-container">
+                    <img id="profile-pic-preview" src="default-avatar.png" alt="Profile Preview" onerror="this.onerror=null;this.src='default-avatar.png';">
+                    <input type="file" id="profile-pic-input" accept="image/*">
+                    <label for="profile-pic-input" class="btn">เลือกรูปภาพ</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">ชื่อ</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">อีเมล</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">เบอร์โทรศัพท์</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="delete-modal" class="modal-overlay-center">
+        <div class="delete-modal-content">
+            <h2>ยืนยันการลบ</h2>
+            <p>คุณแน่ใจหรือไม่ว่าต้องการลบรายชื่อนี้?</p>
+            <div class="form-actions">
+                <button id="cancel-delete-btn" class="btn btn-secondary">ยกเลิก</button>
+                <button id="confirm-delete-btn" class="btn btn-danger">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
